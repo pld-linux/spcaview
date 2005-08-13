@@ -1,8 +1,9 @@
+# TODO: optflags
 
 %define		_snap 20050701
 
-Summary:	spcaview
-Summary(pl):	spcaview
+Summary:	spcaview - streaming, recording and playing video and sound
+Summary(pl):	spcaview - tworzenie strumieni, nagrywanie i odtwarzanie obrazu i d¼wiêku
 Name:		spcaview
 Version:	1.0.8
 Release:	0.1
@@ -16,8 +17,14 @@ BuildRequires:	SDL-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Spcaview is able to stream, record and play video and sound in MJPG I420 RGB16 RGB24 
-or RGB32 and raw data RAWD Norme PAL, SECAM, NTSC and Channel CBVS or S-VIDEO.
+Spcaview is able to stream, record and play video and sound in MJPG
+I420, RGB16, RGB24 or RGB32 and raw data RAWD Norme PAL, SECAM, NTSC
+and Channel CBVS or S-VIDEO.
+
+%description -l pl
+spcaview potrafi tworzyæ strumienie, nagrywaæ i odtwarzaæ obraz i
+d¼wiêk w formatach MJPG I420, RGB16, RGB24 i RGB32 oraz surowe dane
+RAWD Norme PAL, SECAM, NTSC oraz Channel CBVS i S-VIDEO.
 
 %prep
 %setup -q -n spcaview-%{_snap}
@@ -27,13 +34,12 @@ or RGB32 and raw data RAWD Norme PAL, SECAM, NTSC and Channel CBVS or S-VIDEO.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_bindir}
 
-install -d $RPM_BUILD_ROOT/%{_bindir}
-install spcaview spcaserv $RPM_BUILD_ROOT/%{_bindir}
+install spcaview spcaserv $RPM_BUILD_ROOT%{_bindir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
-
 
 %files
 %defattr(644,root,root,755)
