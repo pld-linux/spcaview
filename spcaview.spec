@@ -1,17 +1,17 @@
 # TODO: optflags
 
-%define		_snap 20050701
+%define		_snap 20051212
 
 Summary:	spcaview - streaming, recording and playing video and sound
 Summary(pl):	spcaview - tworzenie strumieni, nagrywanie i odtwarzanie obrazu i d¼wiêku
 Name:		spcaview
-Version:	1.0.8
+Version:	1.1.5
 Release:	0.1
 Epoch:		0
 License:	GPL
 Group:		X11/Applications
 Source0:	http://mxhaard.free.fr/spca50x/Download/spcaview-%{_snap}.tar.gz
-# Source0-md5:	447f766db5e0b9dba304c5f3ebb55cdc
+# Source0-md5:	1420f4e5e31bcb53c31eaba9850a2c01
 URL:		http://spca50x.sourceforge.net/
 BuildRequires:	SDL-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
