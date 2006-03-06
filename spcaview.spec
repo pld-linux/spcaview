@@ -1,4 +1,8 @@
-# TODO: optflags
+# TODO: 
+# - optflags
+# - add http://mxhaard.free.fr/spca50x/Download/spcagui20060127.tar.gz
+# - add http://mxhaard.free.fr/spca50x/Download/sp54convert.tar.gz
+# - add spcacat	
 
 %define		_snap 20051212
 
