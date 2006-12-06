@@ -1,10 +1,8 @@
 # TODO: 
-# - optflags
 # - add http://mxhaard.free.fr/spca50x/Download/spcagui20060127.tar.gz
 # - add http://mxhaard.free.fr/spca50x/Download/sp54convert.tar.gz
-# - add spcacat	
 
-%define		_snap 20051212
+%define		_snap 20060828
 
 Summary:	spcaview - streaming, recording and playing video and sound
 Summary(pl):	spcaview - tworzenie strumieni, nagrywanie i odtwarzanie obrazu i d¼wiêku
@@ -15,7 +13,8 @@ Epoch:		0
 License:	GPL
 Group:		X11/Applications
 Source0:	http://mxhaard.free.fr/spca50x/Download/spcaview-%{_snap}.tar.gz
-# Source0-md5:	1420f4e5e31bcb53c31eaba9850a2c01
+# Source0-md5:	c4ada728637126a3e7ea2894c5723cff
+Patch0:		%{name}-Makefile.patch
 URL:		http://spca50x.sourceforge.net/
 BuildRequires:	SDL-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -32,15 +31,19 @@ RAWD Norme PAL, SECAM, NTSC oraz Channel CBVS i S-VIDEO.
 
 %prep
 %setup -q -n spcaview-%{_snap}
+%patch0 -p1
 
 %build
-%{__make}
+%{__make} \
+	CC="%{__cc}" \
+	OPTCFLAGS="%{rpmcflags}" \
+	LDFLAGS="%{rpmldflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_bindir}
 
-install spcaview spcaserv $RPM_BUILD_ROOT%{_bindir}
+install spcacat spcaserv spcaview $RPM_BUILD_ROOT%{_bindir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -48,5 +51,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc Changelog README
-%attr(755,root,root) %{_bindir}/spcaview
+%attr(755,root,root) %{_bindir}/spcacat
 %attr(755,root,root) %{_bindir}/spcaserv
+%attr(755,root,root) %{_bindir}/spcaview
