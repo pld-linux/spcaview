@@ -1,0 +1,52 @@
+--- spcaview-20060828.orig/Makefile	2005-09-24 20:57:52.000000000 +0000
++++ spcaview-20060828.Makefile/Makefile	2006-12-06 15:26:05.000000000 +0000
+@@ -5,7 +5,6 @@
+ INSTALLROOT=$(PWD)
+ 
+ CC=gcc
+-CPP=g++
+ INSTALL=install
+ APP_BINARY=spcaview
+ BIN=/usr/local/bin
+@@ -13,7 +12,7 @@
+ SDLLIBS = $(shell sdl-config --libs) 
+ SDLFLAGS = $(shell sdl-config --cflags)
+ 
+-SERVFLAGS= -O2 -DLINUX $(WARNINGS)
++SERVFLAGS= $(OPTCFLAGS) -DLINUX $(WARNINGS)
+ MATH_LIB=-lm 
+ SERVLIBS= $(MATH_LIB) -lpthread
+ 
+@@ -25,9 +24,9 @@
+ #           -Wno-unused
+ #           -Wunused
+ 
+-CFLAGS = -DUSE_SDL -O2 -DLINUX $(SDLFLAGS) $(WARNINGS)
++CFLAGS = -DUSE_SDL $(OPTCFLAGS) -DLINUX $(SDLFLAGS) $(WARNINGS)
+ CPPFLAGS = $(CFLAGS)
+-SHCFLAGS=  -O2 -ffast-math -fforce-addr -fstrict-aliasing -fomit-frame-pointer
++SHCFLAGS= $(OPTCFLAGS) -ffast-math -fforce-addr -fstrict-aliasing -fomit-frame-pointer
+ #CLIBFLAGS= -O9 -falign-functions=4 -march=athlon 
+ #LIB_ENCODE = libjpgenc.a
+ #LIB_ENCODE_OBJECTS = encoder.o huffman.o marker.o quant.o
+@@ -52,17 +51,17 @@
+ 
+ # Applications:
+ spcaview:	$(OBJECTS)
+-	$(CC)	$(CFLAGS) $(OBJECTS) $(X11_LIB) $(XPM_LIB)\
++	$(CC) $(LDFLAGS) $(CFLAGS) $(OBJECTS) $(X11_LIB) $(XPM_LIB)\
+ 		$(MATH_LIB) \
+ 		$(SDLLIBS)\
+ 		-o $(APP_BINARY)
+ 	chmod 755 $(APP_BINARY)
+ 
+ spcaserv: $(OBJSERVER)
+-	gcc $(SERVFLAGS) -o spcaserv $(OBJSERVER) $(SERVLIBS)
++	$(CC) $(LDFLAGS) $(SERVFLAGS) -o spcaserv $(OBJSERVER) $(SERVLIBS)
+ 	
+ spcacat: $(OBJCAT)
+-	gcc $(SERVFLAGS) -o spcacat $(OBJCAT) $(SERVLIBS)
++	$(CC) $(LDFLAGS) $(SERVFLAGS) -o spcacat $(OBJCAT) $(SERVLIBS)
+ 	
+ spcaview.o: spcaview.c  jconfig.h dpsh.h utils.h SDL_audioin.h
+ 
