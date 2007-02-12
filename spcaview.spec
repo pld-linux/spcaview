@@ -5,7 +5,7 @@
 %define		_snap 20060828
 
 Summary:	spcaview - streaming, recording and playing video and sound
-Summary(pl.UTF-8):   spcaview - tworzenie strumieni, nagrywanie i odtwarzanie obrazu i dźwięku
+Summary(pl.UTF-8):	spcaview - tworzenie strumieni, nagrywanie i odtwarzanie obrazu i dźwięku
 Name:		spcaview
 Version:	1.1.5
 Release:	0.1
