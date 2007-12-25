@@ -2,18 +2,18 @@
 # - add http://mxhaard.free.fr/spca50x/Download/spcagui20060127.tar.gz
 # - add http://mxhaard.free.fr/spca50x/Download/sp54convert.tar.gz
 
-%define		_snap 20061208
+%define		_snap 20071224
 
 Summary:	spcaview - streaming, recording and playing video and sound
 Summary(pl.UTF-8):	spcaview - tworzenie strumieni, nagrywanie i odtwarzanie obrazu i dźwięku
 Name:		spcaview
-Version:	1.1.7
+Version:	1.1.8
 Release:	0.%{_snap}.1
 Epoch:		0
-License:	GPL
+License:	GPL v2+
 Group:		X11/Applications
 Source0:	http://mxhaard.free.fr/spca50x/Download/spcaview-%{_snap}.tar.gz
-# Source0-md5:	e1bf4b2941249c223efc524151caaadc
+# Source0-md5:	12e46424844b937dd55eab28f74bcd8d
 Patch0:		%{name}-Makefile.patch
 URL:		http://spca50x.sourceforge.net/
 BuildRequires:	SDL-devel
